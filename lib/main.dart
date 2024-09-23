@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:tennis_app/data/on_boarding_repository_impl.dart';
+
 import 'package:tennis_app/presentation/controllers/bloc/on_boarding_bloc.dart';
 import 'package:tennis_app/presentation/screens/on_boarding_screen.dart';
 
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OnBoardingBloc(OnBoardingRepositoryImpl()), 
+      create: (context) => OnBoardingBloc(), 
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',

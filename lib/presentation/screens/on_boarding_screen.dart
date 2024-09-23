@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tennis_app/data/on_boarding_repository_impl.dart';
 import 'package:tennis_app/presentation/controllers/bloc/on_boarding_event.dart';
 import 'package:tennis_app/presentation/controllers/bloc/on_boarding_state.dart';
 import 'package:tennis_app/presentation/screens/home_screen.dart';
@@ -28,8 +27,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => OnBoardingBloc(OnBoardingRepositoryImpl())
-        ..add(FetchOnBoardingData()),
+      create: (context) => OnBoardingBloc()..add(FetchOnBoardingData()),
       child: Scaffold(
         body: BlocBuilder<OnBoardingBloc, OnBoardingState>(
           builder: (context, state) {
@@ -54,39 +52,46 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       },
                     ),
                   ),
-                  const SizedBox(height: 20),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      DotsIndicator(
-                        currentIndex: _currentIndex,
-                        itemCount: state.data.length,
-                      ),
-                      const SizedBox(width: 20),
-                      if (_currentIndex == state.data.length - 1)
-                        ElevatedButton(
-                          onPressed: () {
-                            Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
+                  SizedBox(
+                    height: 50,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const SizedBox(width: 150),
+                        DotsIndicator(
+                          currentIndex: _currentIndex,
+                          itemCount: state.data.length,
+                        ),
+                        const Spacer(),
+                        if (_currentIndex == state.data.length - 1)
+                          Padding(
+                            padding: const EdgeInsets.only(right: 4.0),
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
                                     builder: (BuildContext context) {
-                              return const HomeScreen();
-                            }));
-                          },
-                          style: ElevatedButton.styleFrom(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 12, horizontal: 10),
-                            textStyle: const TextStyle(
-                              fontSize: 18,
-                              fontWeight: FontWeight.bold,
+                                      return const HomeScreen();
+                                    },
+                                  ),
+                                );
+                              },
+                              style: TextButton.styleFrom(
+                                textStyle: const TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              child: const Text(
+                                'Get Started',
+                                style: TextStyle(
+                                  color: Color.fromARGB(200, 253, 71, 85),
+                                ),
+                              ),
                             ),
                           ),
-                          child: const Text(
-                            'Get Started',
-                            style: TextStyle(
-                                color: Color.fromARGB(200, 253, 71, 85)),
-                          ),
-                        ),
-                    ],
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 20),
                 ],
@@ -94,7 +99,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             } else if (state is OnBoardingDataError) {
               return Center(child: Text(state.message));
             }
-            return Container(); 
+            return Container();
           },
         ),
       ),

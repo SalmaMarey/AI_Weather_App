@@ -38,6 +38,7 @@ dependencies:
   bloc: ^8.1.4
   flutter_native_splash: ^2.4.0
   flutter_bloc: ^8.1.6
+  cached_network_image: ^3.4.0
   
 flutter_native_splash:
   color: "#FFFFFF"

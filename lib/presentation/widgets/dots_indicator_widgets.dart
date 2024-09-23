@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 class DotsIndicator extends StatelessWidget {
@@ -22,7 +21,9 @@ class DotsIndicator extends StatelessWidget {
           height: 8.0,
           decoration: BoxDecoration(
             shape: BoxShape.circle,
-           color: currentIndex == index ? const Color.fromARGB(200, 253, 71, 85) : Colors.grey,
+            color: currentIndex == index
+                ? const Color.fromARGB(200, 253, 71, 85)
+                : Colors.grey,
           ),
         );
       }),

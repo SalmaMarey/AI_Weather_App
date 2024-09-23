@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class OnBoardingPage extends StatelessWidget {
@@ -19,7 +20,12 @@ class OnBoardingPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Image.asset(image, height: 300),
+           CachedNetworkImage(
+            imageUrl: image,
+            height: 300,
+            placeholder: (context, url) => const Center(child: CircularProgressIndicator()), 
+            errorWidget: (context, url, error) => const Icon(Icons.error), 
+          ),
           const SizedBox(height: 20),
           Text(
             title,
