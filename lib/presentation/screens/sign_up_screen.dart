@@ -6,12 +6,18 @@ import 'package:tennis_app/presentation/screens/home_screen.dart';
 import 'package:tennis_app/presentation/screens/log_in_screen.dart';
 import 'package:tennis_app/presentation/widgets/confirmed_dialog.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({super.key});
+
+  @override
+  State<SignUpScreen> createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  SignUpScreen({super.key});
+  bool _isPasswordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -134,11 +140,25 @@ class SignUpScreen extends StatelessWidget {
                   ),
                   child: TextField(
                     controller: passwordController,
-                    decoration: const InputDecoration(
+                    obscureText: !_isPasswordVisible,
+                    decoration: InputDecoration(
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0,
                         horizontal: 10.0,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _isPasswordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _isPasswordVisible = !_isPasswordVisible;
+                          });
+                        },
                       ),
                     ),
                     style: const TextStyle(color: Colors.white),
@@ -190,7 +210,7 @@ class SignUpScreen extends StatelessWidget {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return LogInScreen();
+                            return const LogInScreen();
                           },
                         ),
                       );

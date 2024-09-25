@@ -32,7 +32,7 @@ class IntroductionScreen extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return SignUpScreen();
+                    return const SignUpScreen();
                   },
                 ),
               );
@@ -60,7 +60,7 @@ class IntroductionScreen extends StatelessWidget {
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (BuildContext context) {
-                    return LogInScreen();
+                    return const LogInScreen();
                   },
                 ),
               );

@@ -4,13 +4,19 @@ import 'package:tennis_app/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/presentation/screens/sign_up_screen.dart';
-import 'package:tennis_app/presentation/screens/home_screen.dart'; // Add import for HomeScreen
+import 'package:tennis_app/presentation/screens/home_screen.dart';
 
-class LogInScreen extends StatelessWidget {
+class LogInScreen extends StatefulWidget {
+  const LogInScreen({super.key});
+
+  @override
+  State<LogInScreen> createState() => _LogInScreenState();
+}
+
+class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  LogInScreen({super.key});
+  bool _obscureText = true; // This flag controls password visibility
 
   @override
   Widget build(BuildContext context) {
@@ -100,12 +106,25 @@ class LogInScreen extends StatelessWidget {
                   ),
                   child: TextField(
                     controller: passwordController,
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: _obscureText, // This controls the visibility
+                    decoration: InputDecoration(
                       border: InputBorder.none,
-                      contentPadding: EdgeInsets.symmetric(
+                      contentPadding: const EdgeInsets.symmetric(
                         vertical: 15.0,
                         horizontal: 10.0,
+                      ),
+                      suffixIcon: IconButton(
+                        icon: Icon(
+                          _obscureText
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.white,
+                        ),
+                        onPressed: () {
+                          setState(() {
+                            _obscureText = !_obscureText;
+                          });
+                        },
                       ),
                     ),
                     style: const TextStyle(color: Colors.white),
@@ -164,7 +183,7 @@ class LogInScreen extends StatelessWidget {
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return SignUpScreen();
+                            return const SignUpScreen();
                           },
                         ),
                       );
