@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tennis_app/presentation/controllers/bloc/on_boarding_event.dart';
-import 'package:tennis_app/presentation/controllers/bloc/on_boarding_state.dart';
-import 'package:tennis_app/presentation/screens/home_screen.dart';
+import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_event.dart';
+import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_state.dart';
+import 'package:tennis_app/presentation/screens/intoduction_screen.dart';
 import 'package:tennis_app/presentation/widgets/on_boarding_page.dart';
-import '../controllers/bloc/on_boarding_bloc.dart';
+import '../controllers/on_boarding_bloc/on_boarding_bloc.dart';
 import '../widgets/dots_indicator_widgets.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -68,10 +68,10 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                             padding: const EdgeInsets.only(right: 4.0),
                             child: TextButton(
                               onPressed: () {
-                                Navigator.of(context).pushReplacement(
+                                Navigator.of(context).push(
                                   MaterialPageRoute(
                                     builder: (BuildContext context) {
-                                      return const HomeScreen();
+                                      return const IntroductionScreen();
                                     },
                                   ),
                                 );
@@ -85,7 +85,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                               child: const Text(
                                 'Get Started',
                                 style: TextStyle(
-                                  color: Color.fromARGB(200, 253, 71, 85),
+                                  color: Color.fromARGB(200, 0, 87, 166),
                                 ),
                               ),
                             ),

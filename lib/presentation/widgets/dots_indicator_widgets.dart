@@ -22,7 +22,7 @@ class DotsIndicator extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: currentIndex == index
-                ? const Color.fromARGB(200, 253, 71, 85)
+                ? const Color.fromARGB(200, 0, 87, 166)
                 : Colors.grey,
           ),
         );

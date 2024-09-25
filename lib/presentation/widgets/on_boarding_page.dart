@@ -20,18 +20,20 @@ class OnBoardingPage extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-           CachedNetworkImage(
+          CachedNetworkImage(
             imageUrl: image,
-            height: 300,
-            placeholder: (context, url) => const Center(child: CircularProgressIndicator()), 
-            errorWidget: (context, url, error) => const Icon(Icons.error), 
+            height: 500,
+            // fit: BoxFit.fitHeight,
+            placeholder: (context, url) =>
+                const Center(child: CircularProgressIndicator()),
+            errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
           const SizedBox(height: 20),
           Text(
             title,
             textAlign: TextAlign.center,
             style: const TextStyle(
-                color: Color.fromARGB(200, 253, 71, 85),
+                color:  Color.fromARGB(200, 0, 87, 166),
                 fontWeight: FontWeight.bold,
                 fontSize: 20),
           ),
@@ -39,7 +41,7 @@ class OnBoardingPage extends StatelessWidget {
           Text(description,
               textAlign: TextAlign.center,
               style: const TextStyle(
-                  color: Color.fromARGB(200, 253, 71, 85), fontSize: 16)),
+                  color:   Color.fromARGB(200, 0, 87, 166), fontSize: 16)),
         ],
       ),
     );
