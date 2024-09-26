@@ -1,12 +1,8 @@
 # tennis_app
-<hr>
-
 <video width="600" controls>
-  <source src="https://github.com/SalmaMarey/tennis_app/raw/master/assets/video/video_1.mp4" type="video/mp4">
-
+  <source src="https://drive.google.com/uc?export=download&id=1A25Z8szsOe47EHmf6QCRiXmpj4RGRjvm" type="video/mp4">
+ 
 </video>
-
-<hr>
 
 A new Flutter project.
 
