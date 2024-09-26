@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:tennis_app/data/datasources/remote/models/user_model.dart';
+
+import 'package:tennis_app/data/models/user_model.dart';
 import 'package:tennis_app/domain/auth_repository.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
@@ -8,8 +9,10 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
 
   @override
-  Future<UserCredential> signUp(String fullName, String email, String password) async {
-    UserCredential userCredential = await _firebaseAuth.createUserWithEmailAndPassword(
+  Future<UserCredential> signUp(
+      String fullName, String email, String password) async {
+    UserCredential userCredential =
+        await _firebaseAuth.createUserWithEmailAndPassword(
       email: email,
       password: password,
     );
@@ -20,13 +23,17 @@ class AuthenticationRepositoryImpl implements AuthenticationRepository {
       email: email,
     );
 
-    await _firestore.collection('users').doc(userModel.uid).set(userModel.toMap());
+    await _firestore
+        .collection('users')
+        .doc(userModel.uid)
+        .set(userModel.toMap());
     return userCredential;
   }
 
   @override
   Future<UserCredential> logIn(String email, String password) async {
-    UserCredential userCredential = await _firebaseAuth.signInWithEmailAndPassword(
+    UserCredential userCredential =
+        await _firebaseAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );

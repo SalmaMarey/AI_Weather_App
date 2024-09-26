@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:tennis_app/data/models/on_boarding_data_model.dart';
 
 import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_event.dart';
 import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_state.dart';
-import 'package:tennis_app/data/datasources/remote/models/on_boarding_data_model.dart';
+
 
 class OnBoardingBloc extends Bloc<OnBoardingEvent, OnBoardingState> {
   OnBoardingBloc() : super(OnBoardingInitial(0)) {

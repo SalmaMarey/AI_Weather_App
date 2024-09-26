@@ -1,6 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:meta/meta.dart';
-import 'package:tennis_app/data/datasources/remote/models/on_boarding_data_model.dart';
+import 'package:tennis_app/data/models/on_boarding_data_model.dart';
 
 @immutable
 abstract class OnBoardingState {}
@@ -21,4 +21,3 @@ class OnBoardingDataError extends OnBoardingState {
   final String message;
   OnBoardingDataError(this.message);
 }
-
