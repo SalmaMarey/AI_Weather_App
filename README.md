@@ -1,4 +1,12 @@
 # tennis_app
+<hr>
+
+<video width="600" controls>
+  <source src="https://github.com/SalmaMarey/tennis_app/raw/master/assets/video/video_1.mp4" type="video/mp4">
+
+</video>
+
+<hr>
 
 A new Flutter project.
 
