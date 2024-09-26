@@ -1,8 +1,5 @@
 # tennis_app
-<video width="600" controls>
-  <source src="https://drive.google.com/uc?export=download&id=1A25Z8szsOe47EHmf6QCRiXmpj4RGRjvm" type="video/mp4">
- 
-</video>
+[![Video Thumbnail] (https:// i.imgur.com/yYHcxkf.png)](https:// drive.google.com/file/ d/1A25Z8szsOe47EHmf6QCRiXmpj4R GRjvm/view?t=8)
 
 A new Flutter project.
 
