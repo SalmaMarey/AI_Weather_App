@@ -1,4 +1,6 @@
 # tennis_app
+
+Click here for the video 
 [![Video Thumbnail](https://imgur.com/2522HWH)](https://drive.google.com/file/d/1a0OvkKiJP6uffvq2p4NsXx3X3KP-mtwE/view?usp=drive_link)
 
 A new Flutter project.
