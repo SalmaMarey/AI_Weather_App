@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tennis_app/presentation/controllers/auth_bloc/auth_bloc.dart';
-import 'package:tennis_app/presentation/controllers/auth_bloc/auth_state.dart';
-import 'package:tennis_app/presentation/screens/home_screen.dart';
-import 'package:tennis_app/presentation/screens/log_in_screen.dart';
-import 'package:tennis_app/presentation/widgets/confirmed_dialog.dart';
+import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
+import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
+import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
+import 'package:tennis_app/features/auth/presentation/widgets/confirmed_dialog.dart';
+import 'package:tennis_app/features/home/presentation/screens/home_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});

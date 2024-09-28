@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-import 'package:tennis_app/data/models/user_model.dart';
-import 'package:tennis_app/domain/auth_repository.dart';
+import 'package:tennis_app/features/auth/data/models/user_model.dart';
+import 'package:tennis_app/features/auth/domain/auth_repository.dart';
 
 class AuthenticationRepositoryImpl implements AuthenticationRepository {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;

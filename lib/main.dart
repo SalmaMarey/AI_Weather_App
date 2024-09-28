@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
-import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
-import 'package:tennis_app/presentation/controllers/auth_bloc/auth_bloc.dart';
-import 'package:tennis_app/presentation/screens/on_boarding_screen.dart';
-import 'data/auth_repository_impl.dart';
+import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
+import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
+import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
+import 'features/auth/data/auth_repository_impl.dart';
 import 'package:firebase_core/firebase_core.dart'; // Firebase initialization
 
 Future<void> main() async {

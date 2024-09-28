@@ -1,8 +1,8 @@
 import 'package:bloc/bloc.dart';
-import 'package:tennis_app/data/models/on_boarding_data_model.dart';
+import 'package:tennis_app/features/on_boarding/data/models/on_boarding_data_model.dart';
+import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_event.dart';
+import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_state.dart';
 
-import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_event.dart';
-import 'package:tennis_app/presentation/controllers/on_boarding_bloc/on_boarding_state.dart';
 
 
 class OnBoardingBloc extends Bloc<OnBoardingEvent, OnBoardingState> {

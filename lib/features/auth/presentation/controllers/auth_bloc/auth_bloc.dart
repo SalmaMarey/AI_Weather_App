@@ -1,6 +1,6 @@
 import 'package:bloc/bloc.dart';
-import 'package:tennis_app/domain/auth_repository.dart';
-import 'package:tennis_app/presentation/controllers/auth_bloc/auth_state.dart';
+import 'package:tennis_app/features/auth/domain/auth_repository.dart';
+import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'auth_event.dart';
 
 
