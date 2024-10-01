@@ -4,7 +4,7 @@ import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/features/auth/presentation/screens/sign_up_screen.dart';
-import 'package:tennis_app/features/home/presentation/screens/home_screen.dart';
+import 'package:tennis_app/features/location/presentation/screens/location_screen.dart';
 
 
 class LogInScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _LogInScreenState extends State<LogInScreen> {
         listener: (context, state) {
           if (state is AuthSuccess) {
             Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              MaterialPageRoute(builder: (context) => const LocationScreen()),
             );
           } else if (state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
