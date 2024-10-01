@@ -226,15 +226,16 @@ class _WeatherScreenState extends State<WeatherScreen> {
                                   ),
                                   const SizedBox(height: 5),
                                   Text(
-                                    '${forecast.temperature.toInt()}°', // Temperature
+                                    '${forecast.temperature.toInt()}°',
                                     style: const TextStyle(
                                         color: Colors.white, fontSize: 16),
                                   ),
                                   Text(
                                     forecast.weatherCondition,
+                                    textAlign: TextAlign.center,
                                     style: const TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 12,
+                                        color: Color.fromARGB(255, 0, 33, 60),
+                                        fontSize: 14,
                                         fontWeight: FontWeight.bold),
                                   ),
                                 ],

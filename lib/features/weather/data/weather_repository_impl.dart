@@ -1,4 +1,5 @@
 import 'package:http/http.dart' as http;
+import 'package:tennis_app/features/location/data/models/weather_data_model.dart';
 import 'package:tennis_app/features/weather/data/models/daily_forecast_model.dart';
 import 'dart:convert';
 import 'package:tennis_app/features/weather/domain/weather_repository.dart';
@@ -70,6 +71,17 @@ class WeatherRepositoryImpl implements WeatherRepository {
       return combinedData;
     } catch (e) {
       throw Exception('Failed to load weather data: $e');
+    }
+  } @override
+  Future<WeatherData> getWeatherByCoordinates(double latitude, double longitude) async {
+    final response = await http.get(
+      Uri.parse('https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$latitude,$longitude'),
+    );
+
+    if (response.statusCode == 200) {
+      return WeatherData.fromJson(jsonDecode(response.body)); // Adjust this according to your WeatherData model
+    } else {
+      throw Exception('Failed to load weather data');
     }
   }
 }

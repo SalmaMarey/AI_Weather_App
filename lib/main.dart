@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
+import 'package:tennis_app/features/location/presentation/screens/location_screen.dart';
 
 import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
 import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
@@ -38,7 +39,10 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => GetLocationBloc(LocationRepositoryImpl()),
+          create: (context) => GetLocationBloc(
+            LocationRepositoryImpl(),
+            WeatherRepositoryImpl(),
+          ),
         ),
         BlocProvider(
           create: (context) => WeatherBloc(WeatherRepositoryImpl()),
@@ -51,7 +55,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const OnBoardingScreen(),
+        home: const LocationScreen(),
       ),
     );
   }
