@@ -1,11 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/features/auth/presentation/screens/sign_up_screen.dart';
-import 'package:tennis_app/features/location/presentation/screens/location_screen.dart';
-
+import 'package:tennis_app/features/location/data/get_location_repo_impl.dart';
+import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -17,7 +19,7 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  bool _obscureText = true; // This flag controls password visibility
+  bool _obscureText = true;
 
   @override
   Widget build(BuildContext context) {
@@ -25,11 +27,25 @@ class _LogInScreenState extends State<LogInScreen> {
       resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromARGB(200, 0, 87, 166),
       body: BlocConsumer<AuthBloc, AuthState>(
-        listener: (context, state) {
+        listener: (context, state) async {
           if (state is AuthSuccess) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => const LocationScreen()),
-            );
+            final locationRepo = LocationRepositoryImpl();
+            try {
+              final position = await locationRepo.getCurrentLocation();
+
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) => LocationWeatherScreen(
+                    latitude: position.latitude,
+                    longitude: position.longitude,
+                  ),
+                ),
+              );
+            } catch (e) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error fetching location: $e')),
+              );
+            }
           } else if (state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.error)),
@@ -107,7 +123,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   ),
                   child: TextField(
                     controller: passwordController,
-                    obscureText: _obscureText, // This controls the visibility
+                    obscureText: _obscureText,
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       contentPadding: const EdgeInsets.symmetric(

@@ -1,10 +1,13 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
 import 'package:tennis_app/features/auth/presentation/widgets/confirmed_dialog.dart';
-import 'package:tennis_app/features/location/presentation/screens/location_screen.dart';
+import 'package:tennis_app/features/location/data/get_location_repo_impl.dart';
+import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -27,13 +30,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (BuildContext context) {
-                  return const LocationScreen();
-                },
-              ),
-            );
+            final locationRepo = LocationRepositoryImpl();
+            locationRepo.getCurrentLocation().then((position) {
+              Navigator.of(context).pushReplacement(
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return LocationWeatherScreen(
+                      latitude: position.latitude,
+                      longitude: position.longitude,
+                    );
+                  },
+                ),
+              );
+            }).catchError((error) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(content: Text('Error fetching location: $error')),
+              );
+            });
           } else if (state is AuthFailure) {
             ScaffoldMessenger.of(context).showSnackBar(
               SnackBar(content: Text(state.error)),

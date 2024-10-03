@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
-import 'package:tennis_app/features/location/presentation/screens/location_screen.dart';
-
+import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
+import 'package:tennis_app/features/location/domain/weather_location_repo.dart';
 import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
-import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:tennis_app/features/weather/data/weather_repository_impl.dart';
 import 'features/auth/data/auth_repository_impl.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -39,9 +38,9 @@ class MyApp extends StatelessWidget {
           ),
         ),
         BlocProvider(
-          create: (context) => GetLocationBloc(
-            LocationRepositoryImpl(),
-            WeatherRepositoryImpl(),
+          create: (context) => LocationBloc(
+            locationRepository: LocationRepositoryImpl(),
+            weatherRepository: WeatherRepository(),
           ),
         ),
         BlocProvider(
@@ -55,7 +54,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const LocationScreen(),
+        home: const LogInScreen(),
       ),
     );
   }

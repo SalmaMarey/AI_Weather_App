@@ -9,7 +9,10 @@ import '../controllers/weather_bloc/weather_state.dart';
 class WeatherScreen extends StatefulWidget {
   final String city;
 
-  const WeatherScreen({super.key, required this.city});
+  const WeatherScreen({
+    super.key,
+    required this.city,
+  });
 
   @override
   State<WeatherScreen> createState() => _WeatherScreenState();

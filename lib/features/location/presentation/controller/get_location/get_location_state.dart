@@ -1,21 +1,21 @@
 part of 'get_location_bloc.dart';
 
 @immutable
-abstract class GetLocationState {}
+abstract class LocationState {}
 
-class GetLocationInitial extends GetLocationState {}
+class LocationInitial extends LocationState {}
 
-class GetLocationLoading extends GetLocationState {}
-class GetLocationLoaded extends GetLocationState {
-  final Position position;
-  final String cityName;
-  final WeatherData weatherData; 
+class LocationLoading extends LocationState {}
 
-  GetLocationLoaded(this.position, this.cityName, this.weatherData);
+class LocationError extends LocationState {
+  final String message;
+  LocationError(this.message, );
 }
 
-class GetLocationError extends GetLocationState {
-  final String message;
+class LocationLoaded extends LocationState {
+  final Position position; 
+  final Map<String, dynamic> weatherData; 
+  final List<DailyForecast> forecast; 
 
-  GetLocationError(this.message);
+  LocationLoaded({required this.position, required this.weatherData, required this.forecast}); 
 }

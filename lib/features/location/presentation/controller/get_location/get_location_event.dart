@@ -1,8 +1,6 @@
 part of 'get_location_bloc.dart';
 
 @immutable
-abstract class GetLocationEvent {}
+abstract class LocationEvent {}
 
-class FetchLocationEvent extends GetLocationEvent {
-  
-}
+class GetLocationEvent extends LocationEvent {}

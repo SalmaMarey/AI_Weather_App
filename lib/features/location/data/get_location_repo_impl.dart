@@ -1,11 +1,8 @@
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-
 import 'package:tennis_app/features/location/domain/get_location_repo.dart';
 
 class LocationRepositoryImpl implements LocationRepository {
-  final String apiKey = 'e50b199406a3442d8dd232306243009';
-
   @override
   Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
@@ -13,30 +10,39 @@ class LocationRepositoryImpl implements LocationRepository {
 
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
     if (!serviceEnabled) {
-      throw Exception('Location services are disabled.');
+      return Future.error('Location services are disabled.');
     }
 
     permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
       permission = await Geolocator.requestPermission();
       if (permission == LocationPermission.denied) {
-        throw Exception('Location permissions are denied.');
+        return Future.error('Location permissions are denied');
       }
     }
 
     if (permission == LocationPermission.deniedForever) {
-      throw Exception(
+      return Future.error(
           'Location permissions are permanently denied, we cannot request permissions.');
     }
 
+    LocationSettings locationSettings = const LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100,
+    );
+
     return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
+        locationSettings: locationSettings);
   }
 
   @override
-  Future<String> getCityFromPosition(Position position) async {
-    final placemarks =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-    return placemarks.first.locality ?? 'Unknown';
+  Future<String> getCityNameFromCoordinates(
+      double latitude, double longitude) async {
+    List<Placemark> placemarks =
+        await placemarkFromCoordinates(latitude, longitude);
+    if (placemarks.isNotEmpty) {
+      return placemarks[0].locality ?? 'Unknown city';
+    }
+    return 'Unknown city';
   }
 }
