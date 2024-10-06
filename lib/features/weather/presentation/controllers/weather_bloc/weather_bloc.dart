@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tennis_app/features/weather/data/models/daily_forecast_model.dart';
-import 'package:tennis_app/features/weather/data/weather_repository_impl.dart';
+import 'package:tennis_app/features/weather/domain/weather_repository.dart';
 import 'package:tennis_app/features/weather/presentation/controllers/weather_bloc/weather_event.dart';
 import 'package:tennis_app/features/weather/presentation/controllers/weather_bloc/weather_state.dart';
 
 class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
-  final WeatherRepositoryImpl weatherRepository;
+  final WeatherRepository weatherRepository;
 
   WeatherBloc(this.weatherRepository) : super(WeatherInitial()) {
     on<FetchWeatherEvent>((event, emit) async {

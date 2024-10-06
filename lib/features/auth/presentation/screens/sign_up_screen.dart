@@ -6,7 +6,8 @@ import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
 import 'package:tennis_app/features/auth/presentation/widgets/confirmed_dialog.dart';
-import 'package:tennis_app/features/location/data/get_location_repo_impl.dart';
+
+import 'package:tennis_app/features/location/data/location_weather_repo_impl.dart';
 import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -30,7 +31,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) {
           if (state is AuthSuccess) {
-            final locationRepo = LocationRepositoryImpl();
+            final locationRepo = LocationWeatherRepositoryImpl();
             locationRepo.getCurrentLocation().then((position) {
               Navigator.of(context).pushReplacement(
                 MaterialPageRoute(

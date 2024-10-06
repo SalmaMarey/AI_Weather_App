@@ -6,7 +6,8 @@ import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/features/auth/presentation/screens/sign_up_screen.dart';
-import 'package:tennis_app/features/location/data/get_location_repo_impl.dart';
+
+import 'package:tennis_app/features/location/data/location_weather_repo_impl.dart';
 import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
 
 class LogInScreen extends StatefulWidget {
@@ -29,7 +30,7 @@ class _LogInScreenState extends State<LogInScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) async {
           if (state is AuthSuccess) {
-            final locationRepo = LocationRepositoryImpl();
+            final locationRepo = LocationWeatherRepositoryImpl();
             try {
               final position = await locationRepo.getCurrentLocation();
 

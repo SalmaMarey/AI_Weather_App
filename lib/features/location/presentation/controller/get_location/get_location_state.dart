@@ -9,13 +9,18 @@ class LocationLoading extends LocationState {}
 
 class LocationError extends LocationState {
   final String message;
-  LocationError(this.message, );
+  
+  LocationError(this.message);
 }
 
 class LocationLoaded extends LocationState {
-  final Position position; 
-  final Map<String, dynamic> weatherData; 
-  final List<DailyForecast> forecast; 
+  final Position position;
+  final Map<String, dynamic> weatherData;
+  final List<DailyForecast> forecast;
 
-  LocationLoaded({required this.position, required this.weatherData, required this.forecast}); 
+  LocationLoaded({
+    required this.position,
+    required this.weatherData,
+    required this.forecast,
+  });
 }

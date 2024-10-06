@@ -1,8 +1,12 @@
+import 'dart:convert';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
-import 'package:tennis_app/features/location/domain/get_location_repo.dart';
+import 'package:http/http.dart' as http;
+import 'package:tennis_app/features/location/domain/location_weather_repo.dart';
 
-class LocationRepositoryImpl implements LocationRepository {
+class LocationWeatherRepositoryImpl implements LocationWeatherRepository {
+  final String apiKey = 'e50b199406a3442d8dd232306243009';
+
   @override
   Future<Position> getCurrentLocation() async {
     bool serviceEnabled;
@@ -44,5 +48,33 @@ class LocationRepositoryImpl implements LocationRepository {
       return placemarks[0].locality ?? 'Unknown city';
     }
     return 'Unknown city';
+  }
+
+  @override
+  Future<Map<String, dynamic>> getWeather(String city) async {
+    final String url =
+        'https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$city';
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load weather data');
+    }
+  }
+
+  @override
+  Future<Map<String, dynamic>> getForecast(String city) async {
+    final String url =
+        'https://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$city&days=7';
+
+    final response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      return json.decode(response.body);
+    } else {
+      throw Exception('Failed to load forecast data');
+    }
   }
 }
