@@ -5,10 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
-import 'package:tennis_app/features/auth/presentation/screens/sign_up_screen.dart';
-
 import 'package:tennis_app/features/location/data/location_weather_repo_impl.dart';
-import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -34,13 +31,12 @@ class _LogInScreenState extends State<LogInScreen> {
             try {
               final position = await locationRepo.getCurrentLocation();
 
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (BuildContext context) => LocationWeatherScreen(
-                    latitude: position.latitude,
-                    longitude: position.longitude,
-                  ),
-                ),
+              Navigator.of(context).pushReplacementNamed(
+                '/locationweather',
+                arguments: {
+                  'latitude': position.latitude,
+                  'longitude': position.longitude,
+                },
               );
             } catch (e) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -198,13 +194,7 @@ class _LogInScreenState extends State<LogInScreen> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return const SignUpScreen();
-                          },
-                        ),
-                      );
+                      Navigator.of(context).pushNamed('/signup');
                     },
                     child: const Text(
                       "DON'T HAVE AN ACCOUNT",

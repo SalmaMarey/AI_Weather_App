@@ -9,6 +9,7 @@ import 'package:tennis_app/features/location/domain/location_weather_repo.dart';
 import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
 import 'package:tennis_app/features/weather/domain/weather_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'core/router/app_router.dart';
 import 'features/location/presentation/controller/get_location/get_location_bloc.dart';
 import 'features/weather/presentation/controllers/weather_bloc/weather_bloc.dart';
 
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
+        onGenerateRoute: AppRouter().generateRoute,
         home: const LogInScreen(),
       ),
     );

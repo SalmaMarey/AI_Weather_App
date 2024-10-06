@@ -4,11 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
-import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
 import 'package:tennis_app/features/auth/presentation/widgets/confirmed_dialog.dart';
-
 import 'package:tennis_app/features/location/data/location_weather_repo_impl.dart';
-import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
+
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -33,15 +31,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           if (state is AuthSuccess) {
             final locationRepo = LocationWeatherRepositoryImpl();
             locationRepo.getCurrentLocation().then((position) {
-              Navigator.of(context).pushReplacement(
-                MaterialPageRoute(
-                  builder: (BuildContext context) {
-                    return LocationWeatherScreen(
-                      latitude: position.latitude,
-                      longitude: position.longitude,
-                    );
-                  },
-                ),
+              Navigator.of(context).pushReplacementNamed(
+                '/locationweather',
+                arguments: {
+                  'latitude': position.latitude,
+                  'longitude': position.longitude,
+                },
               );
             }).catchError((error) {
               ScaffoldMessenger.of(context).showSnackBar(
@@ -221,13 +216,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return const LogInScreen();
-                          },
-                        ),
-                      );
+                      Navigator.of(context).pushNamed('/login');
                     },
                     child: const Text(
                       'HAVE AN ACCOUNT?',
