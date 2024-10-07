@@ -8,9 +8,9 @@ class LocationInitial extends LocationState {}
 class LocationLoading extends LocationState {}
 
 class LocationError extends LocationState {
-  final String message;
+    final Exception error; 
   
-  LocationError(this.message);
+  LocationError(this.error);
 }
 
 class LocationLoaded extends LocationState {

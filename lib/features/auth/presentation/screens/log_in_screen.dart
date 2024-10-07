@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tennis_app/core/error/error_handler.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
@@ -44,9 +45,8 @@ class _LogInScreenState extends State<LogInScreen> {
               );
             }
           } else if (state is AuthFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.error)),
-            );
+            final failure = ErrorHandler.handleError(state.error);
+          ErrorHandler.showErrorDialog(context, failure.message);
           }
         },
         builder: (context, state) {

@@ -2,7 +2,6 @@ import 'package:bloc/bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import 'package:tennis_app/features/location/domain/location_weather_repo.dart';
-
 import 'package:tennis_app/features/weather/data/models/daily_forecast_model.dart';
 
 part 'get_location_event.dart';
@@ -38,7 +37,7 @@ class LocationBloc extends Bloc<LocationEvent, LocationState> {
             weatherData: weatherData,
             forecast: forecastList));
       } catch (e) {
-        // emit(LocationError(message: e.toString()));
+        emit(LocationError(e as Exception));
       }
     });
   }

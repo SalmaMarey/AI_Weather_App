@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tennis_app/core/error/error_handler.dart';
 import 'package:tennis_app/features/location/presentation/controller/get_location/get_location_bloc.dart';
-
 
 class LocationWeatherScreen extends StatefulWidget {
   const LocationWeatherScreen(
@@ -64,10 +64,10 @@ class _LocationWeatherScreenState extends State<LocationWeatherScreen> {
                       onPressed: () {
                         final cityName = _cityController.text.trim();
                         Navigator.pushNamed(
-      context,
-      '/weather',
-      arguments: cityName,
-    );
+                          context,
+                          '/weather',
+                          arguments: cityName,
+                        );
                         _cityController.clear();
                       },
                       style: ElevatedButton.styleFrom(
@@ -92,15 +92,14 @@ class _LocationWeatherScreenState extends State<LocationWeatherScreen> {
               BlocListener<LocationBloc, LocationState>(
                 listener: (context, state) {
                   if (state is LocationLoaded) {
-                   Navigator.of(context).pushNamed('/details', arguments: {
-  'latitude': state.position.latitude,
-  'longitude': state.position.longitude,
-  'weatherData': state.weatherData,
-});
+                    Navigator.of(context).pushNamed('/details', arguments: {
+                      'latitude': state.position.latitude,
+                      'longitude': state.position.longitude,
+                      'weatherData': state.weatherData,
+                    });
                   } else if (state is LocationError) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      SnackBar(content: Text(state.message)),
-                    );
+                       final failure = ErrorHandler.handleError(state.error);
+          ErrorHandler.showErrorDialog(context, failure.message);
                   }
                 },
                 child: Center(

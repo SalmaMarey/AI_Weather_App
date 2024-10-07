@@ -41,9 +41,13 @@ class DetailsScreen extends StatelessWidget {
       builder: (context, state) {
         if (state is LocationLoading) {
           return const Center(child: CircularProgressIndicator());
-        } else if (state is LocationError) {
-          return Center(child: Text('Error: ${state.message}'));
-        } else if (state is LocationLoaded) {
+        } 
+       else if (state is LocationError) {
+  return Center(
+    child: Text('Error: ${state.error.toString()}'), // Display the error message
+  );
+}
+         else if (state is LocationLoaded) {
           final weatherData = state.weatherData;
           final forecast = state.forecast;
 

@@ -40,11 +40,12 @@ class WeatherBloc extends Bloc<WeatherEvent, WeatherState> {
             forecast: forecast,
           ));
         } else {
-          emit(WeatherError('Invalid weather data received.'));
+          (error) {
+            emit(WeatherError(error as Exception));
+          };
         }
       } catch (error) {
-        // print('Error fetching weather data: ${error.runtimeType}: $error');
-        emit(WeatherError('Failed to fetch weather data: ${error.toString()}'));
+        emit(WeatherError(error as Exception));
       }
     });
   }

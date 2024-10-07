@@ -4,9 +4,9 @@ import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:tennis_app/core/di.dart';
 import 'package:tennis_app/features/auth/domain/auth_repository.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
-import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
 import 'package:tennis_app/features/location/domain/location_weather_repo.dart';
 import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
+import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:tennis_app/features/weather/domain/weather_repository.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'core/router/app_router.dart';
@@ -58,7 +58,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         onGenerateRoute: AppRouter().generateRoute,
-        home: const LogInScreen(),
+        home: const OnBoardingScreen(),
       ),
     );
   }
