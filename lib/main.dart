@@ -69,7 +69,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         onGenerateRoute: AppRouter().generateRoute,
-        home: const LogInScreen(),
+        home: const OnBoardingScreen(),
       ),
     );
   }

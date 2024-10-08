@@ -1,7 +1,8 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:tennis_app/core/utils/daily_forecast.dart';
 import 'package:tennis_app/features/weather/data/datasources/remote/weather_data_source.dart';
-import 'package:tennis_app/features/weather/data/models/daily_forecast_model.dart';
+
 
 
 class WeatherDataSourceImpl implements WeatherDataSource {

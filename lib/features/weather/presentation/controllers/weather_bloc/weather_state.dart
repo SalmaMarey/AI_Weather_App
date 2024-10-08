@@ -1,4 +1,5 @@
-import 'package:tennis_app/features/weather/data/models/daily_forecast_model.dart';
+import 'package:tennis_app/core/utils/daily_forecast.dart';
+
 
 abstract class WeatherState {}
 

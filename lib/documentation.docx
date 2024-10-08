@@ -25,6 +25,13 @@ Functionality: Provides a form for users to enter their email address to receive
 auth_service.dart:
 Purpose: Contains utility methods for authentication tasks.
 Functionality: Provides reusable methods for token management, session validation, and user preference handling related to authentication.
+Use Cases:
+login_use_case.dart: Handles the logic for user login.
+register_use_case.dart: Manages user registration.
+password_reset_use_case.dart: Responsible for password recovery.
+Data Sources:
+auth_remote_data_source.dart: Communicates with remote authentication services (e.g., Firebase).
+auth_local_data_source.dart: Manages local data storage (e.g., user credentials).
 
 lib/features/on_boarding/
 Purpose: Contains the components and logic for the onboarding process of the application. The onboarding feature is designed to introduce new users to the app's functionalities and guide them through the initial setup or tutorial.
@@ -75,6 +82,12 @@ Functionality: Shows a 7-day weather forecast, including daily temperature range
 weather_service.dart:
 Purpose: Contains utility methods for weather-related tasks.
 Functionality: Provides reusable methods for fetching weather data, handling API responses, and processing the received data into usable formats for the app.
+Use Cases:
+fetch_weather_use_case.dart: Fetches weather data based on user location.
+fetch_forecast_use_case.dart: Retrieves weather forecasts for the week.
+Data Sources:
+weather_remote_data_source.dart: Interacts with weather APIs to fetch current conditions and forecasts.
+weather_local_data_source.dart: Caches weather data locally for offline access.
 
 lib/features/location/
 Purpose: Handles the functionality related to user location retrieval and management within the application. This feature ensures that the app can access the user's current location, perform reverse geocoding to obtain city names, and provide location data necessary for weather updates and other location-based services.
@@ -100,6 +113,11 @@ Functionality: Provides reusable methods for fetching location data and processi
 location_screen.dart:
 Purpose: The user interface for displaying location-related information.
 Functionality: Presents users with their current location details, such as city name and related weather information.
+Use Cases:
+get_current_location_use_case.dart: Retrieves the user's current location.
+reverse_geocode_use_case.dart: Converts coordinates to a human-readable location (city name).
+Data Sources:
+location_service.dart: Handles fetching the user's location using device capabilities and APIs.
 
 main.dart
 Purpose: The entry point of the application, where the main app widget is created and configured. This file initializes the app, sets up routing, applies global configurations, and manages dependencies required for the app to function correctly.

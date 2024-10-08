@@ -20,15 +20,15 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LogInScreen());
       case '/signup':
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
-      case '/locationweather':
-        if (args is Map<String, double>) {
-          return MaterialPageRoute(
-            builder: (_) => LocationWeatherScreen(
-              latitude: args['latitude']!,
-              longitude: args['longitude']!,
-            ),
-          );
-        }
+     case '/locationweather':
+  if (args is Map<String, double>) {
+    return MaterialPageRoute(
+      builder: (_) => LocationWeatherScreen(
+        latitude: args['latitude']!,  // Ensure this exists in the Map
+        longitude: args['longitude']!,  // Ensure this exists in the Map
+      ),
+    );
+  }
         return _errorRoute();
       case '/details':
         if (args is Map<String, dynamic>) {
