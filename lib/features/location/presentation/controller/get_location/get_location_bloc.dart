@@ -1,26 +1,36 @@
 import 'package:bloc/bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
-import 'package:tennis_app/features/location/domain/location_weather_repo.dart';
+import 'package:tennis_app/features/location/domain/use_case/get_current_location.dart';
+import 'package:tennis_app/features/location/domain/use_case/get_city_name_from_coordinates.dart';
+import 'package:tennis_app/features/location/domain/use_case/get_weather.dart';
+import 'package:tennis_app/features/location/domain/use_case/get_forecast.dart';
 import 'package:tennis_app/features/weather/data/models/daily_forecast_model.dart';
 
 part 'get_location_event.dart';
 part 'get_location_state.dart';
 
 class LocationBloc extends Bloc<LocationEvent, LocationState> {
-  final LocationWeatherRepository locationWeatherRepository;
+  final GetCurrentLocation getCurrentLocation;
+  final GetCityNameFromCoordinates getCityNameFromCoordinates;
+  final GetWeather getWeather;
+  final GetForecast getForecast;
 
-  LocationBloc({required this.locationWeatherRepository})
-      : super(LocationInitial()) {
+  LocationBloc({
+    required this.getCurrentLocation,
+    required this.getCityNameFromCoordinates,
+    required this.getWeather,
+    required this.getForecast,
+  }) : super(LocationInitial()) {
     on<GetLocationEvent>((event, emit) async {
       emit(LocationLoading());
       try {
-        final position = await locationWeatherRepository.getCurrentLocation();
-        final city = await locationWeatherRepository.getCityNameFromCoordinates(
+        final position = await getCurrentLocation();
+        final city = await getCityNameFromCoordinates(
             position.latitude, position.longitude);
 
-        final weatherData = await locationWeatherRepository.getWeather(city);
-        final forecastData = await locationWeatherRepository.getForecast(city);
+        final weatherData = await getWeather(city);
+        final forecastData = await getForecast(city);
 
         List<DailyForecast> forecastList =
             (forecastData['forecast']['forecastday'] as List)

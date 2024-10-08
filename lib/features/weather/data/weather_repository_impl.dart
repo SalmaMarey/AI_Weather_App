@@ -6,6 +6,7 @@ import 'package:tennis_app/features/weather/domain/weather_repository.dart';
 class WeatherRepositoryImpl implements WeatherRepository {
   final String apiKey = 'e50b199406a3442d8dd232306243009';
 
+  @override
   Future<Map<String, dynamic>> getCurrentWeather(String city) async {
     final response = await http.get(
       Uri.parse('https://api.weatherapi.com/v1/current.json?key=$apiKey&q=$city'),
@@ -18,6 +19,7 @@ class WeatherRepositoryImpl implements WeatherRepository {
     }
   }
 
+  @override
   Future<List<DailyForecast>> getForecastWeather(String city) async {
     final response = await http.get(
       Uri.parse('https://api.weatherapi.com/v1/forecast.json?key=$apiKey&q=$city&days=7'),
