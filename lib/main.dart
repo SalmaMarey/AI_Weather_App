@@ -11,6 +11,7 @@ import 'package:tennis_app/features/location/domain/use_case/get_current_locatio
 import 'package:tennis_app/features/location/domain/use_case/get_forecast.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_weather.dart';
 import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
+import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'package:tennis_app/features/weather/domain/use_case/current_weather.dart';
 import 'package:tennis_app/features/weather/domain/use_case/forecast_weather.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -41,12 +42,11 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => AuthBloc(
-          
             signUpUseCase: getIt<SignUpUseCase>(),
             logInUseCase: getIt<LogInUseCase>(),
           ),
         ),
-       BlocProvider(
+        BlocProvider(
           create: (context) => LocationBloc(
             getCurrentLocation: getIt<GetCurrentLocation>(),
             getCityNameFromCoordinates: getIt<GetCityNameFromCoordinates>(),
@@ -54,12 +54,12 @@ class MyApp extends StatelessWidget {
             getForecast: getIt<GetForecast>(),
           ),
         ),
-       BlocProvider(
-  create: (context) => WeatherBloc(
-    getIt<CurrentWeatherUseCase>(),
-    getIt<ForecastWeatherUseCase>(),
-  ),
-),
+        BlocProvider(
+          create: (context) => WeatherBloc(
+            getIt<CurrentWeatherUseCase>(),
+            getIt<ForecastWeatherUseCase>(),
+          ),
+        ),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

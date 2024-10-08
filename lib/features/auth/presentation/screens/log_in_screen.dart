@@ -2,11 +2,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tennis_app/core/di.dart';
 import 'package:tennis_app/core/error/error_handler.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_event.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_state.dart';
 import 'package:tennis_app/features/location/data/location_weather_repo_impl.dart';
+
+import '../../../location/data/datasources/remote/location_weather_data_source.dart';
 
 class LogInScreen extends StatefulWidget {
   const LogInScreen({super.key});
@@ -28,7 +31,7 @@ class _LogInScreenState extends State<LogInScreen> {
       body: BlocConsumer<AuthBloc, AuthState>(
         listener: (context, state) async {
           if (state is AuthSuccess) {
-            final locationRepo = LocationWeatherRepositoryImpl();
+            final locationRepo = LocationWeatherRepositoryImpl(getIt<LocationWeatherDataSource>());
             try {
               final position = await locationRepo.getCurrentLocation();
 
