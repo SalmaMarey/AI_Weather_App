@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tennis_app/core/utils/daily_forecast.dart';
+import 'package:tennis_app/core/models/daily_forecast.dart';
 import 'package:tennis_app/features/weather/domain/use_case/current_weather.dart';
 import 'package:tennis_app/features/weather/domain/use_case/forecast_weather.dart';
 import 'package:tennis_app/features/weather/presentation/controllers/weather_bloc/weather_event.dart';

@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:tennis_app/core/utils/daily_forecast.dart';
+import 'package:tennis_app/core/models/daily_forecast.dart';
 import 'package:tennis_app/features/weather/data/datasources/remote/weather_data_source.dart';
 
 

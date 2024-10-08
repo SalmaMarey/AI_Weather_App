@@ -1,7 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
-import 'package:tennis_app/core/utils/daily_forecast.dart';
+import 'package:tennis_app/core/models/daily_forecast.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_current_location.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_city_name_from_coordinates.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_weather.dart';

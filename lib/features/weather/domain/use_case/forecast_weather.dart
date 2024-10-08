@@ -1,4 +1,4 @@
-import 'package:tennis_app/core/utils/daily_forecast.dart';
+import 'package:tennis_app/core/models/daily_forecast.dart';
 
 import 'package:tennis_app/features/weather/domain/weather_repository.dart';
 

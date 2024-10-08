@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:tennis_app/core/utils/daily_forecast.dart';
-import 'package:tennis_app/core/utils/weather_info_helper.dart';
+import 'package:tennis_app/core/models/daily_forecast.dart';
+import 'package:tennis_app/core/models/weather_info_helper.dart';
 
 class ForecastWidget extends StatelessWidget {
   final List<DailyForecast> forecast;

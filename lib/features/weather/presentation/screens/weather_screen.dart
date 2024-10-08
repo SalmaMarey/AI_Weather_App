@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
-import 'package:tennis_app/core/utils/weather_info_helper.dart';
+import 'package:tennis_app/core/models/weather_info_helper.dart';
 import 'package:tennis_app/features/weather/presentation/controllers/weather_bloc/weather_bloc.dart';
 import 'package:tennis_app/features/weather/presentation/controllers/weather_bloc/weather_event.dart';
 import 'package:tennis_app/features/weather/presentation/controllers/weather_bloc/weather_state.dart';
