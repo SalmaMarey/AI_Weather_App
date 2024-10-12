@@ -5,8 +5,6 @@ import 'package:tennis_app/features/auth/presentation/screens/sign_up_screen.dar
 import 'package:tennis_app/features/location/presentation/screens/details_screen.dart';
 import 'package:tennis_app/features/location/presentation/screens/location_weather_screen.dart';
 import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
-import 'package:tennis_app/features/weather/presentation/screens/weather_screen.dart';
-
 class AppRouter {
   Route<dynamic> generateRoute(RouteSettings settings) {
     final args = settings.arguments;
@@ -20,34 +18,29 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LogInScreen());
       case '/signup':
         return MaterialPageRoute(builder: (_) => const SignUpScreen());
-     case '/locationweather':
-  if (args is Map<String, double>) {
-    return MaterialPageRoute(
-      builder: (_) => LocationWeatherScreen(
-        latitude: args['latitude']!,  // Ensure this exists in the Map
-        longitude: args['longitude']!,  // Ensure this exists in the Map
-      ),
-    );
-  }
+      case '/locationweather':
+        if (args is Map<String, double>) {
+          return MaterialPageRoute(
+            builder: (_) => LocationWeatherScreen(
+              latitude: args['latitude']!,
+              longitude: args['longitude']!,
+            ),
+          );
+        }
         return _errorRoute();
       case '/details':
         if (args is Map<String, dynamic>) {
           return MaterialPageRoute(
             builder: (_) => DetailsScreen(
-              latitude: args['latitude']!,
-              longitude: args['longitude']!,
+              cityName: args['cityName'], // Use cityName from arguments
+              latitude: args['latitude'],
+              longitude: args['longitude'],
               weatherData: args['weatherData'],
             ),
           );
         }
         return _errorRoute();
-      case '/weather':
-        if (args is String) {
-          return MaterialPageRoute(
-            builder: (_) => WeatherScreen(city: args),
-          );
-        }
-        return _errorRoute();
+
       default:
         return _errorRoute();
     }

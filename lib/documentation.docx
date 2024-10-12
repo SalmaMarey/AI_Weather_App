@@ -55,40 +55,6 @@ onboarding_model.dart:
 Purpose: Defines the data structure for onboarding information, such as tutorial texts, images, and order.
 Functionality: Represents the content to be displayed in each onboarding screen.
 
-lib/features/weather/
-Purpose: Manages the functionality related to weather data retrieval and display within the application. This feature interacts with external weather APIs to fetch current weather conditions, forecasts, and other relevant meteorological information, providing users with timely and accurate weather updates.
-Typical Files:
-weather_bloc.dart:
-Purpose: Manages the state of the weather data retrieval process using the BLoC (Business Logic Component) pattern.
-Functionality: Handles user requests for current weather and forecasts, emitting different states such as WeatherInitial, WeatherLoading, WeatherLoaded, and WeatherError based on the data retrieval process.
-weather_event.dart:
-Purpose: Defines the events that can be triggered during weather data retrieval.
-Functionality: Includes events like FetchWeather, FetchForecast, which correspond to user actions or automatic updates for weather data.
-weather_state.dart:
-Purpose: Represents the various states of the weather data retrieval process.
-Functionality: Includes states such as WeatherInitial, WeatherLoading, WeatherLoaded, and WeatherError, which help manage the UI based on the current weather data status.
-weather_repository.dart:
-Purpose: Contains the logic for interacting with external weather APIs.
-Functionality: Handles API requests to fetch current weather conditions and forecasts based on user location or specified coordinates.
-daily_forecast_model.dart:
-Purpose: Defines the data model for daily weather forecasts.
-Functionality: Includes properties for date, average temperature, weather conditions, and icon representation, ensuring data is structured and easily accessible for the UI.
-current_weather_screen.dart:
-Purpose: The user interface for displaying current weather information.
-Functionality: Presents users with the current weather conditions, including temperature, humidity, wind speed, and weather descriptions.
-forecast_screen.dart:
-Purpose: The user interface for displaying the weather forecast.
-Functionality: Shows a 7-day weather forecast, including daily temperature ranges, weather conditions, and icons representing the forecasted weather.
-weather_service.dart:
-Purpose: Contains utility methods for weather-related tasks.
-Functionality: Provides reusable methods for fetching weather data, handling API responses, and processing the received data into usable formats for the app.
-Use Cases:
-fetch_weather_use_case.dart: Fetches weather data based on user location.
-fetch_forecast_use_case.dart: Retrieves weather forecasts for the week.
-Data Sources:
-weather_remote_data_source.dart: Interacts with weather APIs to fetch current conditions and forecasts.
-weather_local_data_source.dart: Caches weather data locally for offline access.
-
 lib/features/location/
 Purpose: Handles the functionality related to user location retrieval and management within the application. This feature ensures that the app can access the user's current location, perform reverse geocoding to obtain city names, and provide location data necessary for weather updates and other location-based services.
 Typical Files:

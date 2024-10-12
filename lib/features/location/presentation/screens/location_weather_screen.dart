@@ -18,16 +18,7 @@ class LocationWeatherScreen extends StatefulWidget {
 class _LocationWeatherScreenState extends State<LocationWeatherScreen> {
   final TextEditingController _cityController = TextEditingController();
 
-  void _onGetWeather() {
-    final cityName = _cityController.text.trim();
-    Navigator.pushNamed(
-      context,
-      '/weather',
-      arguments: cityName,
-    );
-    _cityController.clear();
-  }
-
+ 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -48,10 +39,9 @@ class _LocationWeatherScreenState extends State<LocationWeatherScreen> {
               ),
               CitySearchWidget(
                 cityController: _cityController,
-                onGetWeather: _onGetWeather,
               ),
               const Spacer(),
-              const CurrentLocationButton(),
+              const CurrentLocationButton(cityName: '',),
             ],
           ),
         ),

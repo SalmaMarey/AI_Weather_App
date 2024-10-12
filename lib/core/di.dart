@@ -15,12 +15,6 @@ import 'package:tennis_app/features/location/domain/use_case/get_city_name_from_
 import 'package:tennis_app/features/location/domain/use_case/get_current_location.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_forecast.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_weather.dart';
-import 'package:tennis_app/features/weather/data/datasources/remote/weather_data_source.dart';
-import 'package:tennis_app/features/weather/data/datasources/remote/weather_data_source_impl.dart';
-import 'package:tennis_app/features/weather/data/weather_repository_impl.dart';
-import 'package:tennis_app/features/weather/domain/use_case/current_weather.dart';
-import 'package:tennis_app/features/weather/domain/use_case/forecast_weather.dart';
-import 'package:tennis_app/features/weather/domain/weather_repository.dart';
 
 final GetIt getIt = GetIt.instance;
 
@@ -59,17 +53,5 @@ void setupDependencies() {
   getIt.registerLazySingleton(
       () => LogInUseCase(getIt<AuthenticationRepository>()));
 
-  // Register the WeatherRepository
-  getIt.registerLazySingleton<WeatherDataSource>(
-    () => WeatherDataSourceImpl(),
-  );
-  getIt.registerLazySingleton<WeatherRepository>(
-    () => WeatherRepositoryImpl(getIt<WeatherDataSource>()),
-  );
-  getIt.registerLazySingleton(
-    () => CurrentWeatherUseCase(getIt<WeatherRepository>()),
-  );
-  getIt.registerLazySingleton(
-    () => ForecastWeatherUseCase(getIt<WeatherRepository>()),
-  );
+
 }

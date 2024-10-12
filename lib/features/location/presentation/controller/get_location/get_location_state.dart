@@ -8,8 +8,8 @@ class LocationInitial extends LocationState {}
 class LocationLoading extends LocationState {}
 
 class LocationError extends LocationState {
-    final Exception error; 
-  
+  final Exception error;
+
   LocationError(this.error);
 }
 
