@@ -14,36 +14,52 @@ class WeatherStatisticsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isPortrait = size.height > size.width;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        _buildStatColumn(Icons.water_drop, humidity, 'Humidity', Colors.blue),
-        _buildStatColumn(Icons.air, windKph, 'Wind Speed', Colors.orange),
-        _buildStatColumn(Icons.cloud, cloud, 'Cloud Cover', Colors.white),
+        _buildStatColumn(Icons.water_drop, humidity, 'Humidity', Colors.blue,
+            size, isPortrait),
+        _buildStatColumn(
+            Icons.air, windKph, 'Wind Speed', Colors.orange, size, isPortrait),
+        _buildStatColumn(
+            Icons.cloud, cloud, 'Cloud Cover', Colors.white, size, isPortrait),
       ],
     );
   }
 
-  Column _buildStatColumn(IconData icon, double value, String label, Color color) {
+  Column _buildStatColumn(IconData icon, double value, String label,
+      Color color, Size size, bool isPortrait) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
           icon,
           color: color,
-          size: 40,
+          size: isPortrait
+              ? size.height * 0.055
+              : size.width * 0.05, 
         ),
         const SizedBox(height: 5),
         Text(
           '$value${label == 'Humidity' ? '%' : ' kph'}',
-          style: const TextStyle(color: Colors.white, fontSize: 16, fontWeight: FontWeight.bold,),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: isPortrait
+                ? size.height * 0.02
+                : size.width * 0.02, 
+            fontWeight: FontWeight.bold,
+          ),
         ),
         Text(
           label,
-          style: const TextStyle(
+          style: TextStyle(
             color: Colors.white,
-            fontSize: 16,
-           
+            fontSize: isPortrait
+                ? size.height * 0.020
+                : size.width * 0.020, 
           ),
         ),
       ],

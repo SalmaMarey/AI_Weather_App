@@ -2,29 +2,31 @@ import 'package:flutter/material.dart';
 import 'package:tennis_app/features/location/presentation/screens/details_screen.dart';
 
 class CurrentLocationButton extends StatelessWidget {
-  final String cityName; 
+  final String cityName;
 
-  const CurrentLocationButton(
-      {super.key,
-      required this.cityName}); 
+  const CurrentLocationButton({super.key, required this.cityName});
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isPortrait = size.height > size.width;
+
     return Center(
       child: ElevatedButton(
         onPressed: () {
-     
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) =>
-                  DetailsScreen(cityName: cityName), 
+              builder: (context) => DetailsScreen(cityName: cityName),
             ),
           );
         },
         style: ElevatedButton.styleFrom(
           backgroundColor: Colors.grey.withOpacity(0.7),
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 40),
+          padding: EdgeInsets.symmetric(
+            horizontal: isPortrait ? size.width * 0.2 : size.width * 0.15,
+            vertical: isPortrait ? size.height * 0.02 : size.height * 0.01,
+          ),
           shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topLeft: Radius.circular(90),
@@ -32,12 +34,13 @@ class CurrentLocationButton extends StatelessWidget {
             ),
           ),
         ),
-        child: const Text(
+        child: Text(
           'Get Weather For Current Location',
+          textAlign: TextAlign.center,
           style: TextStyle(
-            color: Color.fromARGB(255, 0, 33, 60),
+            color: const Color.fromARGB(255, 0, 33, 60),
             fontWeight: FontWeight.bold,
-            fontSize: 18,
+            fontSize: isPortrait ? size.height * 0.03 : size.width * 0.025,
           ),
         ),
       ),

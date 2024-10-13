@@ -12,8 +12,14 @@ class CitySearchWidget extends StatefulWidget {
 class _CitySearchWidgetState extends State<CitySearchWidget> {
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isPortrait = size.height > size.width;
+
     return Padding(
-      padding: const EdgeInsets.all(16.0),
+      padding: EdgeInsets.symmetric(
+        horizontal: size.width * 0.04,
+        vertical: size.height * 0.02,
+      ),
       child: Row(
         children: [
           Expanded(
@@ -24,20 +30,33 @@ class _CitySearchWidgetState extends State<CitySearchWidget> {
               ),
               child: TextField(
                 controller: widget.cityController,
-                decoration: const InputDecoration(
+                decoration: InputDecoration(
                   hintText: 'Location',
-                  hintStyle: TextStyle(color: Color.fromARGB(255, 0, 33, 60)),
-                  prefixIcon:
-                      Icon(Icons.search, color: Color.fromARGB(255, 0, 33, 60)),
+                  hintStyle: TextStyle(
+                    color: const Color.fromARGB(255, 0, 33, 60),
+                    fontSize:
+                        isPortrait ? size.width * 0.04 : size.height * 0.04,
+                  ),
+                  prefixIcon: Icon(
+                    Icons.search,
+                    color: const Color.fromARGB(255, 0, 33, 60),
+                    size: isPortrait ? size.width * 0.06 : size.height * 0.06,
+                  ),
                   border: InputBorder.none,
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 15, horizontal: 10),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: size.height * 0.02,
+                    horizontal: size.width * 0.03,
+                  ),
                 ),
-                style: const TextStyle(color: Color.fromARGB(255, 0, 33, 60)),
+                style: TextStyle(
+                  color: const Color.fromARGB(255, 0, 33, 60),
+                  fontSize:
+                      isPortrait ? size.width * 0.045 : size.height * 0.045,
+                ),
               ),
             ),
           ),
-          const SizedBox(width: 10),
+          SizedBox(width: size.width * 0.02),
           ElevatedButton(
             onPressed: () {
               final cityName = widget.cityController.text.trim();
@@ -53,17 +72,25 @@ class _CitySearchWidgetState extends State<CitySearchWidget> {
               }
             },
             style: ElevatedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+              padding: EdgeInsets.symmetric(
+                horizontal: size.width * 0.03,
+                vertical: size.height * 0.015,
+              ),
               backgroundColor: Colors.grey.withOpacity(0.7),
-              textStyle:
-                  const TextStyle(fontSize: 14, fontWeight: FontWeight.bold),
+              textStyle: TextStyle(
+                fontSize: isPortrait ? size.width * 0.035 : size.height * 0.035,
+                fontWeight: FontWeight.bold,
+              ),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(25),
               ),
             ),
-            child: const Text(
+            child: Text(
               'Get Weather',
-              style: TextStyle(color: Color.fromARGB(255, 0, 33, 60)),
+              style: TextStyle(
+                color: const Color.fromARGB(255, 0, 33, 60),
+                fontSize: isPortrait ? size.width * 0.04 : size.height * 0.04,
+              ),
             ),
           ),
         ],

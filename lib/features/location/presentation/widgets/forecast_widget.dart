@@ -10,22 +10,34 @@ class ForecastWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    final isPortrait = size.height > size.width;
+
     return SizedBox(
-      width: 350,
-      height: 200,
+      width: size.width * 0.95,
+      height: isPortrait
+          ? size.height * 0.24
+          : size.height * 0.3, 
       child: ListView.builder(
         scrollDirection: Axis.horizontal,
         itemCount: forecast.length,
         itemBuilder: (context, index) {
           final forecastDay = forecast[index];
-
           final weatherInfo = getWeatherInfo(forecastDay.temperature);
 
           return Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 25.0),
+            padding: EdgeInsets.symmetric(
+              horizontal: isPortrait
+                  ? size.width * 0.085
+                  : size.width * 0.03,
+            ),
             child: Container(
-              height: 90,
-              width: 65,
+              height: isPortrait
+                  ? size.height * 0.48
+                  : size.height * 0.55, 
+              width: isPortrait
+                  ? size.width * 0.15
+                  : size.width * 0.12, 
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(50),
                 color: Colors.grey.withOpacity(0.7),
@@ -35,24 +47,38 @@ class ForecastWidget extends StatelessWidget {
                 children: [
                   Image.asset(
                     weatherInfo.imagePath,
-                    height: 40,
+                    height: isPortrait
+                        ? size.height * 0.06
+                        : size.height * 0.08, 
                   ),
                   const SizedBox(height: 5),
                   Text(
                     DateFormat('EEE').format(DateTime.parse(forecastDay.date)),
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: isPortrait
+                          ? size.height * 0.02
+                          : size.width * 0.02, 
+                    ),
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    '${forecastDay.temperature.toInt().toString()}°',
-                    style: const TextStyle(color: Colors.white, fontSize: 16),
+                    '${forecastDay.temperature.toInt()}°',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: isPortrait
+                          ? size.height * 0.02
+                          : size.width * 0.02,
+                    ),
                   ),
                   Text(
                     weatherInfo.description,
                     textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      color: Color.fromARGB(255, 0, 33, 60),
-                      fontSize: 14,
+                    style: TextStyle(
+                      color: const Color.fromARGB(255, 0, 33, 60),
+                      fontSize: isPortrait
+                          ? size.height * 0.018
+                          : size.width * 0.025, 
                       fontWeight: FontWeight.bold,
                     ),
                   ),

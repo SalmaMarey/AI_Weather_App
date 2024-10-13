@@ -5,7 +5,6 @@ import 'package:tennis_app/core/di.dart';
 import 'package:tennis_app/features/auth/domain/use_case/log_in.dart';
 import 'package:tennis_app/features/auth/domain/use_case/sign_up.dart';
 import 'package:tennis_app/features/auth/presentation/controllers/auth_bloc/auth_bloc.dart';
-import 'package:tennis_app/features/auth/presentation/screens/log_in_screen.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_city_name_from_coordinates.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_current_location.dart';
 import 'package:tennis_app/features/location/domain/use_case/get_forecast.dart';
@@ -13,6 +12,7 @@ import 'package:tennis_app/features/location/domain/use_case/get_weather.dart';
 import 'package:tennis_app/features/on_boarding/presentation/controllers/on_boarding_bloc/on_boarding_bloc.dart';
 
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tennis_app/features/on_boarding/presentation/screens/on_boarding_screen.dart';
 import 'core/router/app_router.dart';
 import 'features/location/presentation/controller/get_location/get_location_bloc.dart';
 
@@ -60,7 +60,7 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         onGenerateRoute: AppRouter().generateRoute,
-        home: const LogInScreen(),
+        home: const OnBoardingScreen(),
       ),
     );
   }
