@@ -30,14 +30,16 @@ class PredictionWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return IconButton(
       icon: const Icon(
-        Icons.sports_tennis,
+        Icons.thermostat,
         color: Colors.white,
       ),
       onPressed: () {
         bool isGoodToGoOut = _shouldGoOut();
-        showPredictionDialog(isGoodToGoOut
-            ? 'The weather is good for exercise'
-            : 'The weather is not suitable for exercise');
+        showPredictionDialog(
+          isGoodToGoOut
+              ? 'The weather is good to go out! 🌞'
+              : 'The weather is not good to go out. 🌧️',
+        );
       },
     );
   }

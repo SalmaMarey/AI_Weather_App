@@ -22,7 +22,7 @@ class CurrentLocationButton extends StatelessWidget {
           );
         },
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.grey.withOpacity(0.7),
+          backgroundColor: Colors.grey.withOpacity(0.5),
           padding: EdgeInsets.symmetric(
             horizontal: isPortrait ? size.width * 0.2 : size.width * 0.15,
             vertical: isPortrait ? size.height * 0.02 : size.height * 0.01,
