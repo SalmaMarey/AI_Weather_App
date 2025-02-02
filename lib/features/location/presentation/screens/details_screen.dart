@@ -186,29 +186,34 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           height: isPortrait
                               ? size.height * 0.28
                               : size.height * 0.18,
+                              width: isPortrait
+                              ? size.width * 0.68
+                              : size.width * 0.168,
                           child: Stack(
                             children: [
                               Positioned(
-                                left: size.width * 0.02,
+                                left: size.width * 0.1,
                                 top: size.height * 0.035,
                                 child: Opacity(
                                   opacity: 0.6,
                                   child: Image.asset(
                                     weatherInfo.imagePath,
                                     height: isPortrait
-                                        ? size.height * 0.25
+                                        ? size.width * 0.50
                                         : size.height * 0.2,
                                   ),
                                 ),
                               ),
-                              Text(
-                                '${tempC.toInt()}°',
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: isPortrait
-                                      ? size.height * 0.18
-                                      : size.width * 0.15,
-                                  fontWeight: FontWeight.bold,
+                              Center(
+                                child: Text(
+                                  '${tempC.toInt()}°',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: isPortrait
+                                        ? size.height * 0.18
+                                        : size.width * 0.15,
+                                    fontWeight: FontWeight.bold,
+                                  ),
                                 ),
                               ),
                             ],

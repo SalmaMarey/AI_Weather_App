@@ -1,12 +1,12 @@
 flutter_native_splash:
   color: "#FFFFFF"
-   image: assets/splash_logo.png
+  image: assets/logo.png
 
   android_12:
-    image:  assets/splash_12.png
-   color: "#FFFFFF"
+    image: assets/logo_12.png
+    color: "#FFFFFF"
 
   android: true
   ios: true
   # ios_content_mode: aspect-fit
-  # android_gravity: center 
+  # android_gravity: center
